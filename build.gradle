@@ -1,0 +1,33 @@
+apply plugin: 'java'
+apply plugin: 'eclipse-wtp'
+apply plugin: 'war'
+apply plugin: 'jetty'
+
+sourceCompatibility = 7
+version = '1.0'
+jar {
+    manifest {
+        attributes 'Implementation-Title': 'TBA World Builder', 'Implementation-Version': version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.+'
+    testCompile group: 'org.testng', name: 'testng', version: '6.+'
+}
+
+test {
+	useTestNG()
+}
+
+uploadArchives {
+    repositories {
+       flatDir {
+           dirs 'repos'
+       }
+    }
+}
